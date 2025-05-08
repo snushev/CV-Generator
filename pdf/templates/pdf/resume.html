@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ user_profile.name }} - CV</title>
+    <link rel="stylesheet" href="http://127.0.0.1:8000{% static 'pdf/style.css' %}">
+</head>
+
+<body>
+    <div class="header">
+        <img src="{{ user_profile.image }}" class="profile-img" width="150" height="150" alt="Profile Image">
+        <h1>{{ user_profile.name }}</h1>
+        <div class="contact-info">
+            <h2>{{ user_profile.email }}</h2>
+            <h2>{{ user_profile.phone }}</h2>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">Summary</h2>
+        <p>{{ user_profile.summary }}</p>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">Skills</h2>
+        <p>{{ user_profile.skills }}</p>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">Education</h2>
+        <ul>
+            <li><strong>{{ user_profile.school }}</strong></li>
+            <li>{{ user_profile.degree }} from {{ user_profile.university }}</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">Work Experience</h2>
+        <p>{{ user_profile.previous_work }}</p>
+    </div>
+</body>
