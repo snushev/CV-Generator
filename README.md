@@ -1,12 +1,19 @@
-# PDF Generator
+# Django PDF Generator Web App
 
-This is a small Python script that generates PDF files from HTML templates. It's a simple proof-of-concept project, but it gets the job done if you're looking to automate basic PDF creation.
+This is a Django web application that generates PDF files from HTML templates. It provides a user-friendly interface for creating and managing PDF documents with saved templates.
 
-## Requirements
+## Features
+
+- Web-based interface for PDF generation
+- Template management system
+- Saved PDF history
+- User authentication (optional)
+- Responsive design
 
 Make sure you have the following installed:
 
 - Python 3.7+
+- Django 3.0+
 - `wkhtmltopdf` – You can install it from https://wkhtmltopdf.org/downloads.html
 
 ## Installation
@@ -16,7 +23,9 @@ git clone <this-repo-url>
 cd pdfgenerator
 python -m venv venv
 source venv/bin/activate  # On Windows use: venv\Scripts\activate
-pip install -r requirements.txt
+wkhtmltopdf --version
+python manage.py migrate
+python manage.py createsuperuser
 ```
 
 Make sure `wkhtmltopdf` is installed and added to your system's PATH. You can test it by running:
@@ -27,14 +36,31 @@ wkhtmltopdf --version
 
 ## Usage
 
-Edit the `sample_template.html` to your needs, then run:
+1. Template Management:
+    - Create and edit HTML templates in the admin interface
+    - Use Django template tags for dynamic content
 
-```bash
-python pdfgen.py
+2. PDF Generation:
+    - Select a template from your saved templates
+    - Fill in any required variables
+    - Generate and download the PDF
+
+3. History:
+    - View previously generated PDFs
+    - Re-generate or download past PDFs
+
+## Project Structure
+
+```
+pdfgenerator/
+├── pdfgenerator/
+├── pdf/                # Main PDF generation app
+│   ├── models.py       # Template and PDF history models
+│   ├── views.py        # PDF generation views
+│   └── templates/      # HTML templates
+├── db.sqlite3/             # Database file
+└── manage.py               # Django management script
 ```
 
-It will create a `sample_output.pdf` in the current directory.
-
-## Notes
-
-This is just a quick utility script. Feel free to expand it with CLI arguments, better templating support, or integration into a bigger app.
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
